@@ -1,10 +1,3 @@
-Function.prototype.inherits = function(SuperClass) {
-    function Surrogate() {}
-    Surrogate.prototype = SuperClass.prototype
-    this.prototype = new Surrogate()
-    this.prototype.constructor = this
-}
-
 function MovingObject (type) {
     this.type = type
 }
@@ -18,15 +11,17 @@ function Ship (type) {
     // this.type = type
 }
 
-Ship.inherits(MovingObject);
+Ship.prototype = Object.create(MovingObject.prototype)
+Ship.prototype.constructor = Ship
 
 Ship.prototype.sails = function () {
     console.log(`I can Sail`)
 }
 
 function Asteroid () {}
-Asteroid.inherits(MovingObject);
 
+Asteroid.prototype = Object.create(MovingObject.prototype)
+Asteroid.prototype.constructor = Asteroid
 
 
 let ship = new Ship("Ship")

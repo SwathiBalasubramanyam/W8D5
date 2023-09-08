@@ -42,7 +42,6 @@ function sum2(...nums){
 
 Function.prototype.myBind = function(ctx, ...bindArgs){
     return (...callArgs) => {
-        console.log(this);
         this.apply(ctx, bindArgs.concat(callArgs));
     }
 }
